@@ -3,92 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infographic - Nhiệm vụ 2.2</title>
+    <meta name="theme-color" content="#f4f3ed">
+    <title>Hồ sơ cá nhân | CT005</title>
     <style>
+        :root {
+            color-scheme: light;
+            --paper: #f4f3ed;
+            --ink: #202b27;
+            --muted: #62716a;
+            --green: #285b4d;
+            --lime: #d9e86b;
+            --line: #d8ddd5;
+            --white: #fffefa;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            color: #333;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            line-height: 1.6;
         }
-
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 25px;
-            background-color: white;
-            text-align: center;
-            border-radius: 12px;
-            box-shadow: 0 0 10px #bbb;
+        a { color: inherit; }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1120px;
+            margin: auto;
+            padding: 22px 28px;
         }
-
-        h1 {
-            color: #1565c0;
-        }
-
-        .description {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .infographic {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .video {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            margin-top: 25px;
-        }
-
-        .video iframe {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            border: 0;
-            border-radius: 8px;
-        }
-
-        footer {
-            margin-top: 25px;
+        .brand {
+            color: var(--green);
             font-size: 14px;
-            color: #666;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
         }
+        nav { display: flex; gap: 24px; }
+        nav a { color: var(--muted); font-size: 14px; text-decoration: none; }
+        nav a:hover, nav a:focus-visible { color: var(--green); }
+        .hero { position: relative; overflow: hidden; background: var(--green); color: var(--white); }
+        .hero::after {
+            position: absolute;
+            top: -145px;
+            right: -65px;
+            width: 440px;
+            height: 440px;
+            border: 1px solid rgb(255 255 255 / 22%);
+            border-radius: 50%;
+            content: "";
+        }
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 220px;
+            align-items: center;
+            gap: 48px;
+            max-width: 1120px;
+            min-height: 380px;
+            margin: auto;
+            padding: 64px 28px;
+        }
+        .eyebrow, .section-kicker {
+            margin: 0 0 12px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .eyebrow { color: var(--lime); }
+        h1, h2, h3, p { margin-top: 0; }
+        h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; line-height: 1.12; }
+        h1 { max-width: 700px; margin-bottom: 18px; font-size: clamp(42px, 7vw, 76px); }
+        .hero-copy { max-width: 590px; margin-bottom: 0; color: #e1ebe5; font-size: 17px; }
+        .initials {
+            display: grid;
+            place-items: center;
+            width: 190px;
+            aspect-ratio: 1;
+            border: 1px solid rgb(255 255 255 / 50%);
+            border-radius: 50%;
+            background: var(--lime);
+            color: var(--green);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 62px;
+        }
+        .content { max-width: 1120px; margin: auto; padding: 0 28px; }
+        .about {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 72px;
+            padding: 78px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .section-kicker { color: #b35a3e; }
+        h2 { margin-bottom: 18px; font-size: 38px; }
+        .about-copy { max-width: 610px; color: var(--muted); }
+        .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; margin: 0; }
+        .facts div { border-top: 1px solid var(--line); padding-top: 12px; }
+        .facts dt { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+        .facts dd { margin: 4px 0 0; font-weight: 700; }
+        .work { padding: 72px 0 88px; }
+        .work-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 28px; }
+        .work-heading h2 { margin-bottom: 0; }
+        .work-heading p { max-width: 380px; margin-bottom: 4px; color: var(--muted); }
+        .project { margin-top: 18px; padding: 26px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); }
+        .project-title { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 18px; }
+        .project-title h3 { margin: 0; font-size: 25px; }
+        .project-number { color: #b35a3e; font-size: 13px; font-weight: 800; }
+        .pdf-frame { display: block; width: 100%; height: 600px; border: 1px solid var(--line); background: #eceee8; }
+        .infographic { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+        .video-frame { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #202b27; }
+        .video-link { margin: 12px 0 0; color: var(--muted); font-size: 14px; }
+        .video-link a { color: var(--green); font-weight: 700; }
+        footer { padding: 22px 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; text-align: center; }
+        @media (max-width: 680px) {
+            .topbar { align-items: flex-start; padding: 18px 20px; }
+            nav { gap: 12px; }
+            nav a { font-size: 12px; }
+            .hero-inner { grid-template-columns: 1fr; gap: 28px; min-height: auto; padding: 58px 20px; }
+            .initials { grid-row: 1; width: 96px; font-size: 34px; }
+            .hero::after { top: -190px; right: -250px; }
+            .content { padding: 0 20px; }
+            .about { grid-template-columns: 1fr; gap: 22px; padding: 56px 0; }
+            h2 { font-size: 32px; }
+            .work { padding: 56px 0 64px; }
+            .work-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+            .project { padding: 16px; }
+            .project-title h3 { font-size: 21px; }
+            .pdf-frame { height: 480px; }
+        }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     </style>
 </head>
 <body>
-    <main class="container">
-        <h1>Infographic và Video Nhiệm vụ 2.2</h1>
+    <header class="topbar">
+        <a class="brand" href="#dau-trang">Hồ sơ cá nhân</a>
+        <nav aria-label="Điều hướng chính">
+            <a href="#gioi-thieu">Giới thiệu</a>
+            <a href="#san-pham">Sản phẩm</a>
+        </nav>
+    </header>
 
-        <p class="description">
-            Infographic minh họa nội dung bài học và video hướng dẫn thực hiện
-            Nhiệm vụ 2.2.
-        </p>
+    <main id="dau-trang">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-inner">
+                <div>
+                    <p class="eyebrow">Xin chào, mình là</p>
+                    <h1 id="hero-title">Huỳnh Thị Minh Thư</h1>
+                    <p class="hero-copy">Sinh viên ngành Truyền Thông Đa Phương Tiện tại Đại học Cần Thơ, yêu thích khám phá công nghệ, thiết kế nội dung và biến những ý tưởng thú vị thành sản phẩm hữu ích.</p>
+                </div>
+                <div class="initials" aria-label="Chữ viết tắt Huỳnh Thị Minh Thư">HMT</div>
+            </div>
+        </section>
 
-        <img
-            class="infographic"
-            src="Lab05_Ex2.1.png"
-            alt="Infographic Nhiệm vụ 2.1"
-        >
+        <div class="content">
+            <section class="about" id="gioi-thieu" aria-labelledby="about-title">
+                <div>
+                    <p class="section-kicker">Một chút về mình</p>
+                    <h2 id="about-title">Luôn học hỏi,<br>luôn sáng tạo.</h2>
+                </div>
+                <div>
+                    <p class="about-copy">Mình là người ham học hỏi, thích làm việc có kế hoạch và luôn sẵn sàng thử cách tiếp cận mới. Trang này lưu lại một vài thông tin cá nhân cùng những sản phẩm mình thực hiện trong Lab 05.</p>
+                    <dl class="facts">
+                        <div><dt>Trường</dt><dd>Đại học Cần Thơ</dd></div>
+                        <div><dt>Ngành học</dt><dd>Truyền Thông Đa Phương Tiện</dd></div>
+                        <div><dt>Sở thích</dt><dd>Công nghệ · Thiết kế</dd></div>
+                        <div><dt>Định hướng</dt><dd>Học tập và phát triển</dd></div>
+                        <div><dt>Email</dt><dd>thub2605305@student.ctu.edu.vn</dd></div>
+                    </dl>
+                </div>
+            </section>
 
-        <div class="video">
-            <iframe
-                src="https://www.youtube.com/embed/KqfMUl2JFT4"
-                title="Video hướng dẫn Nhiệm vụ 2.2"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-            </iframe>
+            <section class="work" id="san-pham" aria-labelledby="work-title">
+                <div class="work-heading">
+                    <div>
+                        <p class="section-kicker">Bài thực hành</p>
+                        <h2 id="work-title">Sản phẩm của mình</h2>
+                    </div>
+                    <p>Ba sản phẩm được thực hiện trong quá trình học tập và thực hành.</p>
+                </div>
+
+                <article class="project">
+                    <div class="project-title">
+                        <h3>Tài liệu PDF</h3>
+                        <span class="project-number">01 / 03</span>
+                    </div>
+                    <iframe class="pdf-frame" src="Lab05_Ex1.1.pdf" title="Tài liệu PDF Lab 05" loading="lazy"></iframe>
+                </article>
+
+                <article class="project">
+                    <div class="project-title">
+                        <h3>Infographic</h3>
+                        <span class="project-number">02 / 03</span>
+                    </div>
+                    <img class="infographic" src="Lab05_Ex2.1.png" alt="Infographic Lab 05" loading="lazy">
+                </article>
+
+                <article class="project">
+                    <div class="project-title">
+                        <h3>Video YouTube</h3>
+                        <span class="project-number">03 / 03</span>
+                    </div>
+                    <iframe class="video-frame" src="https://www.youtube.com/embed/KqfMUl2JFT4" title="Video YouTube Lab 05" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p class="video-link">Không xem được video nhúng? <a href="https://www.youtube.com/watch?v=KqfMUl2JFT4" target="_blank" rel="noopener noreferrer">Mở video trên YouTube</a>.</p>
+                </article>
+            </section>
         </div>
-
-        <footer>
-            © 2026 CT005 - Lab 05. Infographic thuộc tài liệu bài tập.
-            Video được nhúng từ YouTube.
-        </footer>
     </main>
+
+    <footer>© 2026 · Hồ sơ cá nhân · CT005 Lab 05</footer>
 </body>
 </html>
